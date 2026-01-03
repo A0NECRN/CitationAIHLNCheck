@@ -38,7 +38,16 @@ The system adopts a "funnel" verification logic:
 pip install -r requirements.txt
 ```
 
-#### 2. Run Verification
+#### 2. Configuration (Optional)
+To improve stability with the Crossref API, you can provide your email address in [verifier.py](file:///e:/works/CitationCheck/src/verifier.py):
+```python
+HEADERS = {
+    "User-Agent": "CitationAIHLNCheck/2.0 (mailto:your_email@example.com)"
+}
+```
+Providing a real email address will place your requests into Crossref's "Polite Pool," ensuring more reliable service.
+
+#### 3. Run Verification
 Place your `.bib` files in the project root directory and run:
 ```bash
 python main.py
@@ -90,7 +99,16 @@ After verification, a corresponding `*_report.md` file will be generated in the 
 pip install -r requirements.txt
 ```
 
-#### 2. 运行查证
+#### 2. 配置 (可选)
+为了提高 Crossref API 的请求稳定性，您可以在 [verifier.py](file:///e:/works/CitationCheck/src/verifier.py) 中配置您的邮箱地址：
+```python
+HEADERS = {
+    "User-Agent": "CitationAIHLNCheck/2.0 (mailto:your_email@example.com)"
+}
+```
+提供真实的邮箱地址会将您的请求加入 Crossref 的“礼貌池 (Polite Pool)”，从而获得更稳定的服务。
+
+#### 3. 运行查证
 将您的 `.bib` 文件放入项目根目录，直接运行：
 ```bash
 python main.py
