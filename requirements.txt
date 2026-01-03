@@ -1,0 +1,4 @@
+bibtexparser>=1.4.0
+requests>=2.31.0
+tqdm>=4.66.0
+rapidfuzz>=3.0.0
