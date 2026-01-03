@@ -10,48 +10,41 @@ from src.verifier import verify_citation
 DEFAULT_INPUT_FILE = "input.bib"
 
 def process_file(file_path):
-    print(f"\n[*] 正在处理文件: {file_path}")
+    print(f"\n[*] Processing file: {file_path}")
     
     if not os.path.exists(file_path):
-        print(f"[-] 未找到文件: {file_path}")
+        print(f"[-] File not found: {file_path}")
         if file_path == DEFAULT_INPUT_FILE:
             with open(DEFAULT_INPUT_FILE, 'w', encoding='utf-8') as f:
-                f.write("% 请在此处粘贴您的 BibTeX 内容\n")
-                f.write("% 示例:\n")
-                f.write("% @article{vaswani2017attention,\n")
-                f.write("%   title={Attention Is All You Need},\n")
-                f.write("%   author={Vaswani, Ashish},\n")
-                f.write("%   year={2017}\n")
-                f.write("% }\n")
-            print(f"[+] 已为您创建 {DEFAULT_INPUT_FILE}。")
+                f.write("% Paste your BibTeX content here\n")
+            print(f"[+] Created {DEFAULT_INPUT_FILE} for you.")
         return
 
     try:
         entries = parse_bibtex_file(file_path)
     except Exception as e:
-        print(f"[!] 解析 BibTeX 失败: {e}")
+        print(f"[!] BibTeX parsing failed: {e}")
         return
 
     if not entries:
-        print(f"[-] {file_path} 中没有找到有效的 BibTeX 条目。")
+        print(f"[-] No valid BibTeX entries found in {file_path}.")
         return
 
-    print(f"[+] 找到 {len(entries)} 条文献。开始查证...")
+    print(f"[+] Found {len(entries)} entries. Verifying...")
     
     results = []
     valid_count = 0
     
-    for entry in tqdm(entries, desc="查证进度", unit="条"):
+    for entry in tqdm(entries, desc="Progress", unit="item"):
         verification = verify_citation(entry)
         results.append((entry, verification))
         if verification['status'] == 'valid':
             valid_count += 1
             
-    # Report
     report_file = f"{file_path}_report.md"
     with open(report_file, 'w', encoding='utf-8') as f:
-        f.write(f"# 查证报告: {os.path.basename(file_path)}\n\n")
-        f.write(f"**处理时间**: {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+        f.write(f"# Verification Report: {os.path.basename(file_path)}\n\n")
+        f.write(f"**Processed at**: {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n")
         
         for entry, result in results:
             entry_id = entry.get('ID', 'Unknown')
@@ -59,45 +52,45 @@ def process_file(file_path):
             
             status = result['status']
             if status == 'valid':
-                symbol = "✅ [通过]"
+                symbol = "✅ [PASSED]"
             elif status == 'uncertain':
-                symbol = "⚠️ [存疑]"
+                symbol = "⚠️ [DOUBTFUL]"
             elif status == 'not_found':
-                symbol = "❌ [未找到]"
-            else: # invalid or error
-                symbol = "🚫 [无效/错误]"
+                symbol = "❌ [NOT FOUND]"
+            else:
+                symbol = "🚫 [INVALID/ERROR]"
                 
             f.write(f"### {symbol} ID: {entry_id}\n")
-            f.write(f"- **原始标题**: {title}\n")
+            f.write(f"- **Original Title**: {title}\n")
             
             if status == 'valid':
-                f.write(f"- **匹配来源**: {result.get('title', '')}\n")
-                f.write(f"- **相似度**: {result.get('score', 0):.2f}%\n")
-                f.write(f"- **链接**: {result.get('url', '')}\n")
-                f.write(f"- **来源库**: {result.get('source', '')}\n")
+                f.write(f"- **Matched Title**: {result.get('title', '')}\n")
+                f.write(f"- **Similarity**: {result.get('score', 0):.2f}%\n")
+                f.write(f"- **Link**: {result.get('url', '')}\n")
+                f.write(f"- **Source**: {result.get('source', '')}\n")
             elif status == 'uncertain':
-                 f.write(f"- **疑似匹配**: {result.get('title', '')}\n")
-                 f.write(f"- **相似度**: {result.get('score', 0):.2f}%\n")
-                 f.write(f"- **原因**: {result.get('reason', '')}\n")
-                 f.write(f"- **来源库**: {result.get('source', '')}\n")
+                f.write(f"- **Suspected Match**: {result.get('title', '')}\n")
+                f.write(f"- **Similarity**: {result.get('score', 0):.2f}%\n")
+                f.write(f"- **Reason**: {result.get('reason', '')}\n")
+                f.write(f"- **Source**: {result.get('source', '')}\n")
             else:
-                 f.write(f"- **原因**: {result.get('reason', '')}\n")
-                 f.write(f"- **来源库**: {result.get('source', '')}\n")
+                f.write(f"- **Reason**: {result.get('reason', '')}\n")
+                f.write(f"- **Source**: {result.get('source', '')}\n")
             
             f.write("\n---\n\n")
 
-        f.write(f"## 统计\n")
-        f.write(f"- **总计**: {len(entries)}\n")
-        f.write(f"- **通过**: {valid_count}\n")
-        f.write(f"- **问题**: {len(entries) - valid_count}\n")
+        f.write(f"## Summary\n")
+        f.write(f"- **Total**: {len(entries)}\n")
+        f.write(f"- **Passed**: {valid_count}\n")
+        f.write(f"- **Issues**: {len(entries) - valid_count}\n")
 
-    print(f"\n[+] 查证完成！报告已生成: {report_file}")
-    print(f"文件统计: 总计 {len(entries)} 条, 通过 {valid_count} 条, 问题 {len(entries) - valid_count} 条。")
+    print(f"\n[+] Verification complete! Report generated: {report_file}")
+    print(f"Stats: Total {len(entries)}, Passed {valid_count}, Issues {len(entries) - valid_count}.")
     print("=" * 60 + "\n")
 
 def main():
     print("==========================================")
-    print("      CitationCheck - 文献查证工具")
+    print("      CitationCheck - Verification Tool")
     print("==========================================")
 
     parser = argparse.ArgumentParser(description='BibTeX Citation Verifier')
@@ -109,13 +102,12 @@ def main():
     files_to_process = args.files
     
     if not files_to_process:
-        # No arguments provided, scan for .bib files
         files_to_process = glob.glob("*.bib")
         
         if not files_to_process:
             files_to_process = [DEFAULT_INPUT_FILE]
             
-    print(f"[*] 待处理文件列表: {files_to_process}")
+    print(f"[*] Files to process: {files_to_process}")
 
     for file_path in files_to_process:
         process_file(file_path)

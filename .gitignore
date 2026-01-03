@@ -1,0 +1,8 @@
+ERROR_LOG.md
+*_report.md
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+venv/
+.env
