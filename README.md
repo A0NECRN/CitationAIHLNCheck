@@ -1,54 +1,56 @@
-# CitationCheck - 自动化引文查证工具
+# CitationCheck - AI 引文真实性自动化查证工具
 
-`CitationCheck` 是一个专为科研人员和开发者设计的 BibTeX 文献查证工具。它能够自动分析 `.bib` 文件，并通过 Crossref、arXiv 和 Semantic Scholar 等多个学术数据库交叉验证文献的真实性、准确性，有效识别 GPT 等大模型生成的“幻觉文献”（假文献）。
+[![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-## 🚀 核心功能
+**CitationCheck** 是一款专为科研人员和开发者设计的 BibTeX 引文自动化查证工具。它能够有效识别由大语言模型（如 ChatGPT）生成的“幻觉文献”，并通过多源 API 交叉验证确保引文的真实性与准确性。
 
-- **多源交叉验证**: 整合 Crossref、arXiv 和 Semantic Scholar API，全方位检索文献元数据。
-- **假文献识别**: 专门设计的年份校验与作者匹配算法，能精准拦截标题虚假、年份乱编的伪造文献。
-- **模糊匹配引擎**: 采用 `RapidFuzz` 算法，兼容 BibTeX 中常见的标题格式差异和大括号干扰。
-- **全自动批处理**: 支持自动扫描当前目录下所有 `.bib` 文件，一键生成详细的 Markdown 查证报告。
-- **鲁棒性设计**: 内置指数退避重试机制，从容应对 API 频率限制（Rate Limiting）。
+## 🌟 核心功能
 
-## 🛠️ 安装指南
+- **自动化全扫描**: 自动识别并处理当前目录下的所有 `.bib` 文件。
+- **多源交叉验证**: 集成 Crossref, Semantic Scholar, 以及 arXiv 三大权威学术数据库。
+- **抗幻觉算法**: 深度结合标题相似度、作者匹配以及**严格年份校验**，精准拦截伪造文献。
+- **智能重试机制**: 内置指数退避算法，优雅处理 API 频率限制（Rate Limiting）。
+- **可视化报告**: 自动生成美观的 Markdown 查证报告，包含 DOI 链接、匹配得分及失败原因。
 
-本项目基于 Python 开发，建议在 Windows 11 环境下运行。
+## 🛠️ 工作原理
 
-1. **克隆仓库**:
-   ```bash
-   git clone https://github.com/YourUsername/CitationCheck.git
-   cd CitationCheck
-   ```
+系统采用“漏斗式”校验逻辑：
+1. **精确匹配**: 优先通过 DOI 进行金标准验证。
+2. **模糊检索**: 利用 `RapidFuzz` 算法对标题进行单词级排序比对，兼容各种排版差异。
+3. **加权评分**:
+   - **标题相似度**: 基础分。
+   - **作者加分**: 命中第一作者姓氏额外加分。
+   - **年份惩罚**: 年份不匹配（误差 > 2年）将面临重度扣分，这是识别假文献的关键。
 
-2. **安装依赖**:
-   使用清华大学镜像源以加快下载速度：
-   ```bash
-   pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-   ```
+## 🚀 快速开始
 
-## 📖 使用方法
+### 1. 安装依赖
+```bash
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
 
-### 快速查证
+### 2. 运行查证
 将您的 `.bib` 文件放入项目根目录，直接运行：
 ```bash
 python main.py
 ```
-程序会自动扫描所有 `.bib` 文件并为每个文件生成对应的 `_report.md` 报告。
-
-### 指定文件查证
+或者指定特定文件：
 ```bash
 python main.py example.bib
 ```
 
-## 📊 查证报告示例
+### 3. 查看结果
+查证完成后，项目目录下将生成对应的 `*_report.md` 文件。
 
-生成的报告将以 Markdown 格式保存，包含以下状态：
-- ✅ **[通过]**: 文献真实存在且元数据高度匹配。
-- ⚠️ **[存疑]**: 找到相似文献但关键字段（如年份、作者）存在偏差。
-- ❌ **[未找到]**: 库中无法匹配到该文献，极大概率为假文献。
+## 📂 项目结构
+- `main.py`: 程序入口，负责调度与报告生成。
+- `src/`: 核心逻辑模块（解析器、验证器）。
+- `ERROR_LOG.md`: 记录开发过程中的技术挑战与解决方案。
+- `example.bib`: 包含真实文献与测试用伪造文献的示例文件。
 
-## 📝 错误记录与维护
-项目内置 [ERROR_LOG.md](ERROR_LOG.md)，详细记录了开发过程中的技术挑战（如编码问题、API 限流）及解决方案，确保系统长期稳定运行。
+## 📝 开发者记录
+本项目在开发过程中严格遵循自动化验证与代码整洁规范，详细的错误处理经验记录在 [ERROR_LOG.md](./ERROR_LOG.md) 中。
 
-## 🛡️ 开源协议
-MIT License
+---
+**由 A0NECRN 开发并维护**
