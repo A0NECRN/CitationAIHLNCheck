@@ -1,6 +1,7 @@
 import requests
 import time
 import re
+import random
 import xml.etree.ElementTree as ET
 from rapidfuzz import fuzz
 from urllib.parse import quote
@@ -10,11 +11,17 @@ SEMANTIC_SCHOLAR_API_URL = "https://api.semanticscholar.org/graph/v1/paper/searc
 ARXIV_API_URL = "http://export.arxiv.org/api/query"
 
 HEADERS = {
-    "User-Agent": "CitationCheck/2.0 (mailto:citation_check_bot@example.com)"
+    "User-Agent": "CitationAIHLNCheck/2.0 (mailto:citation_check_bot@example.com)"
 }
 
 THRESHOLD_VALID = 85
 THRESHOLD_UNCERTAIN = 60
+
+MIN_DELAY = 0.8
+MAX_DELAY = 1.5
+
+def api_delay():
+    time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
 
 def clean_title(title):
     if not title:
@@ -67,6 +74,7 @@ def check_year_match(entry_year, result_year):
 
 def verify_by_crossref_doi(doi):
     try:
+        api_delay()
         url = f"{CROSSREF_API_URL}/{doi}"
         response = requests.get(url, headers=HEADERS, timeout=20)
         
@@ -95,6 +103,7 @@ def verify_by_crossref_doi(doi):
 
 def verify_by_crossref_search(title, author=None, year=None):
     try:
+        api_delay()
         query = title
         if author:
             first_author = author.split(',')[0].split(' and ')[0].strip()
@@ -171,11 +180,11 @@ def verify_by_semantic_scholar(title, author=None, year=None):
     }
     
     max_retries = 3
-    base_wait = 2
+    base_wait = 3
     
     for attempt in range(max_retries):
         try:
-            time.sleep(1) 
+            api_delay()
             
             response = requests.get(SEMANTIC_SCHOLAR_API_URL, headers=HEADERS, params=params, timeout=20)
             
@@ -217,8 +226,8 @@ def verify_by_semantic_scholar(title, author=None, year=None):
                     "year": found_year
                 }
             elif response.status_code == 429:
-                 wait_time = base_wait * (2 ** attempt)
-                 print(f" [!] Semantic Scholar rate limited, waiting {wait_time}s...")
+                 wait_time = base_wait * (2 ** attempt) + random.uniform(1, 3)
+                 print(f" [!] Semantic Scholar rate limited, waiting {wait_time:.1f}s...")
                  time.sleep(wait_time)
                  continue
             else:
@@ -232,6 +241,7 @@ def verify_by_semantic_scholar(title, author=None, year=None):
 
 def verify_by_arxiv(title, author=None, year=None):
     try:
+        api_delay()
         clean_t = re.sub(r'[^\w\s]', ' ', title) 
         clean_t = re.sub(r'\s+', ' ', clean_t).strip()
         

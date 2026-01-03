@@ -90,7 +90,7 @@ def process_file(file_path):
 
 def main():
     print("==========================================")
-    print("      CitationCheck - Verification Tool")
+    print("    CitationAIHLNCheck - Verification Tool")
     print("==========================================")
 
     parser = argparse.ArgumentParser(description='BibTeX Citation Verifier')

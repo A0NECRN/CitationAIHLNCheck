@@ -1,0 +1,777 @@
+{
+  "629f237a79f09cc2c9ed1f182b729657": {
+    "title": "A Review of Machine Learning Techniques in Analog Integrated Circuit Design Automation",
+    "url": "https://doi.org/10.3390/electronics11030435",
+    "doi": "10.3390/electronics11030435",
+    "score": 100.0,
+    "final_score": 100,
+    "source": "Crossref (Search)",
+    "authors": [
+      {
+        "given": "Rayan",
+        "family": "Mina",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Department of Electrical and Mechanical Engineering, Saint-Joseph University of Beirut, Beirut 1004 2020, Lebanon"
+          }
+        ]
+      },
+      {
+        "given": "Chadi",
+        "family": "Jabbour",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "COMELEC, Institut Mines-Télécom Paris, 91120 Palaiseau, France"
+          }
+        ]
+      },
+      {
+        "given": "George E.",
+        "family": "Sakr",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Virgil Systems, Toronto, ON M5G 1E2, Canada"
+          }
+        ]
+      }
+    ],
+    "year": 2022,
+    "status": "valid"
+  },
+  "fc30359587e28e42116bf4e97656f511": {
+    "title": "Accurate predictions on small data with a tabular foundation model",
+    "url": "https://doi.org/10.1038/s41586-024-08328-6",
+    "doi": "10.1038/s41586-024-08328-6",
+    "score": 100.0,
+    "final_score": 100,
+    "source": "Crossref (Search)",
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0000-0001-8556-518X",
+        "authenticated-orcid": false,
+        "given": "Noah",
+        "family": "Hollmann",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0000-0795-6097",
+        "authenticated-orcid": false,
+        "given": "Samuel",
+        "family": "Müller",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0001-1181-0549",
+        "authenticated-orcid": false,
+        "given": "Lennart",
+        "family": "Purucker",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0000-0688-9435",
+        "authenticated-orcid": false,
+        "given": "Arjun",
+        "family": "Krishnakumar",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Max",
+        "family": "Körfer",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Shi Bin",
+        "family": "Hoo",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-5518-7445",
+        "authenticated-orcid": false,
+        "given": "Robin Tibor",
+        "family": "Schirrmeister",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-2037-3694",
+        "authenticated-orcid": false,
+        "given": "Frank",
+        "family": "Hutter",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "year": 2025,
+    "status": "valid"
+  },
+  "e8e4225303508142e797bb4008223b0e": {
+    "title": "OpenYield: An Open-Source SRAM Yield Analysis and Optimization Benchmark Suite",
+    "url": "https://doi.org/10.1109/iccd65941.2025.00030",
+    "doi": "10.1109/iccd65941.2025.00030",
+    "score": 100.0,
+    "final_score": 100,
+    "source": "Crossref (Search)",
+    "authors": [
+      {
+        "given": "Shan",
+        "family": "Shen",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Nanjing University of Science and Technology,Nanjing,China,210094"
+          }
+        ]
+      },
+      {
+        "given": "Xingyang",
+        "family": "Li",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Beihang University,Beijing,China,100191"
+          }
+        ]
+      },
+      {
+        "given": "Zhuohua",
+        "family": "Liu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Beihang University,Beijing,China,100191"
+          }
+        ]
+      },
+      {
+        "given": "Junhao",
+        "family": "Ma",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Nanjing University of Science and Technology,Nanjing,China,210094"
+          }
+        ]
+      },
+      {
+        "given": "Yikai",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Nanjing University of Science and Technology,Nanjing,China,210094"
+          }
+        ]
+      },
+      {
+        "given": "Yiheng",
+        "family": "Wu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Nanjing University of Science and Technology,Nanjing,China,210094"
+          }
+        ]
+      },
+      {
+        "given": "Yuquan",
+        "family": "Sun",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Beihang University,Beijing,China,100191"
+          }
+        ]
+      },
+      {
+        "given": "Wei W.",
+        "family": "Xing",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "University of Sheffield,Sheffield, S102TN,United Kingdom"
+          }
+        ]
+      }
+    ],
+    "year": 2025,
+    "status": "valid"
+  },
+  "ca142a7251b1d6e5a8996c8b9e5f0f9e": {
+    "title": "MIT Cheetah 3: Design and Control of a Robust, Dynamic Quadruped Robot",
+    "url": "https://doi.org/10.1109/iros.2018.8593885",
+    "doi": "10.1109/iros.2018.8593885",
+    "score": 100.0,
+    "final_score": 100,
+    "source": "Crossref (Search)",
+    "authors": [
+      {
+        "given": "Gerardo",
+        "family": "Bledt",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Matthew J.",
+        "family": "Powell",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Benjamin",
+        "family": "Katz",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Jared",
+        "family": "Di Carlo",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Patrick M.",
+        "family": "Wensing",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Sangbae",
+        "family": "Kim",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "year": 2018,
+    "status": "valid"
+  },
+  "7bc30aeed85e0e09d4e3bad121488556": {
+    "title": "ZERO-MOMENT POINT — THIRTY FIVE YEARS OF ITS LIFE",
+    "url": "https://doi.org/10.1142/s0219843604000083",
+    "doi": "10.1142/s0219843604000083",
+    "score": 95.83333333333334,
+    "final_score": 100,
+    "source": "Crossref (Search)",
+    "authors": [
+      {
+        "given": "MIOMIR",
+        "family": "VUKOBRATOVIĆ",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Institute Mihajlo Pupin, Volgina 15, 11000-Belgrade, Serbia and Montenegro, Yugoslavia"
+          }
+        ]
+      },
+      {
+        "given": "BRANISLAV",
+        "family": "BOROVAC",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "University of Novi Sad, Faculty of Technical Sciences, 21000-Novi Sad, Trg D, Obradovica 6, Serbia and Montenegro, Yugoslavia"
+          }
+        ]
+      }
+    ],
+    "year": 2004,
+    "status": "valid"
+  },
+  "aaa6d394c60b506beb043722c2499361": {
+    "title": "Attention Is All You Need",
+    "url": "https://doi.org/10.65215/ysbyhc05",
+    "doi": "10.65215/ysbyhc05",
+    "score": 100.0,
+    "final_score": 85.0,
+    "source": "Crossref (Search)",
+    "authors": [
+      {
+        "given": "Ashish",
+        "family": "Vaswani",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Google Brain"
+          }
+        ]
+      },
+      {
+        "given": "Noam",
+        "family": "Shazeer",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Google Brain"
+          }
+        ]
+      },
+      {
+        "given": "Niki",
+        "family": "Parmar",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Google Research"
+          }
+        ]
+      },
+      {
+        "given": "Jakob",
+        "family": "Uszkoreit",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Google Research"
+          }
+        ]
+      },
+      {
+        "given": "Llion",
+        "family": "Jones",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Google Research"
+          }
+        ]
+      },
+      {
+        "given": "Aidan",
+        "family": "N.Gomez",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "University of Toronto"
+          }
+        ]
+      },
+      {
+        "given": "Lukasz",
+        "family": "Kaiser",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Google Brain"
+          }
+        ]
+      },
+      {
+        "given": "Illia",
+        "family": "Polosukhin",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "year": 2025,
+    "status": "valid"
+  },
+  "c0cd14f8029ec0bc72a3f12b47e36b91": {
+    "title": "The Role and Impact of Artificial Intelligence In Modern Education: Analysis of Problems and Prospects",
+    "url": "https://doi.org/10.37497/rev.artif.intell.educ.v5i00.26",
+    "doi": "10.37497/rev.artif.intell.educ.v5i00.26",
+    "score": 70.44025157232706,
+    "final_score": 70.44025157232706,
+    "source": "Crossref (Search)",
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0000-0003-4058-9959",
+        "authenticated-orcid": false,
+        "given": "Svitlana",
+        "family": "Iasechko",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-5643-0059",
+        "authenticated-orcid": false,
+        "given": "Maksym",
+        "family": "Iasechko",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "year": 2024,
+    "status": "uncertain",
+    "reason": "Similarity 70.4% (Threshold 80%)"
+  },
+  "bb823375c7537013e901547972efd30c": {
+    "title": "Semi-Supervised Classification with Graph Convolutional Networks",
+    "url": "http://arxiv.org/abs/1609.02907v4",
+    "doi": "",
+    "score": 100.0,
+    "final_score": 100,
+    "source": "arXiv API",
+    "authors": [
+      "Thomas N. Kipf",
+      "Max Welling"
+    ],
+    "year": "2016",
+    "status": "valid"
+  },
+  "6e96e158643d0bd128e80db2424f1231": {
+    "title": "Long Short-Term Memory",
+    "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
+    "doi": "10.1162/neco.1997.9.8.1735",
+    "score": 100.0,
+    "final_score": 100,
+    "source": "Crossref (Search)",
+    "authors": [
+      {
+        "given": "Sepp",
+        "family": "Hochreiter",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Fakultät für Informatik, Technische Universität München, 80290 München, Germany"
+          }
+        ]
+      },
+      {
+        "given": "Jürgen",
+        "family": "Schmidhuber",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "IDSIA, Corso Elvezia 36, 6900 Lugano, Switzerland"
+          }
+        ]
+      }
+    ],
+    "year": 1997,
+    "status": "valid"
+  },
+  "be0ed08fb72b31c02750a6beb438af1d": {
+    "title": "GPT-4 Technical Report",
+    "url": "http://arxiv.org/abs/2303.08774v6",
+    "doi": "",
+    "score": 100.0,
+    "final_score": 100,
+    "source": "arXiv API",
+    "authors": [
+      " OpenAI",
+      "Josh Achiam",
+      "Steven Adler",
+      "Sandhini Agarwal",
+      "Lama Ahmad",
+      "Ilge Akkaya",
+      "Florencia Leoni Aleman",
+      "Diogo Almeida",
+      "Janko Altenschmidt",
+      "Sam Altman",
+      "Shyamal Anadkat",
+      "Red Avila",
+      "Igor Babuschkin",
+      "Suchir Balaji",
+      "Valerie Balcom",
+      "Paul Baltescu",
+      "Haiming Bao",
+      "Mohammad Bavarian",
+      "Jeff Belgum",
+      "Irwan Bello",
+      "Jake Berdine",
+      "Gabriel Bernadett-Shapiro",
+      "Christopher Berner",
+      "Lenny Bogdonoff",
+      "Oleg Boiko",
+      "Madelaine Boyd",
+      "Anna-Luisa Brakman",
+      "Greg Brockman",
+      "Tim Brooks",
+      "Miles Brundage",
+      "Kevin Button",
+      "Trevor Cai",
+      "Rosie Campbell",
+      "Andrew Cann",
+      "Brittany Carey",
+      "Chelsea Carlson",
+      "Rory Carmichael",
+      "Brooke Chan",
+      "Che Chang",
+      "Fotis Chantzis",
+      "Derek Chen",
+      "Sully Chen",
+      "Ruby Chen",
+      "Jason Chen",
+      "Mark Chen",
+      "Ben Chess",
+      "Chester Cho",
+      "Casey Chu",
+      "Hyung Won Chung",
+      "Dave Cummings",
+      "Jeremiah Currier",
+      "Yunxing Dai",
+      "Cory Decareaux",
+      "Thomas Degry",
+      "Noah Deutsch",
+      "Damien Deville",
+      "Arka Dhar",
+      "David Dohan",
+      "Steve Dowling",
+      "Sheila Dunning",
+      "Adrien Ecoffet",
+      "Atty Eleti",
+      "Tyna Eloundou",
+      "David Farhi",
+      "Liam Fedus",
+      "Niko Felix",
+      "Simón Posada Fishman",
+      "Juston Forte",
+      "Isabella Fulford",
+      "Leo Gao",
+      "Elie Georges",
+      "Christian Gibson",
+      "Vik Goel",
+      "Tarun Gogineni",
+      "Gabriel Goh",
+      "Rapha Gontijo-Lopes",
+      "Jonathan Gordon",
+      "Morgan Grafstein",
+      "Scott Gray",
+      "Ryan Greene",
+      "Joshua Gross",
+      "Shixiang Shane Gu",
+      "Yufei Guo",
+      "Chris Hallacy",
+      "Jesse Han",
+      "Jeff Harris",
+      "Yuchen He",
+      "Mike Heaton",
+      "Johannes Heidecke",
+      "Chris Hesse",
+      "Alan Hickey",
+      "Wade Hickey",
+      "Peter Hoeschele",
+      "Brandon Houghton",
+      "Kenny Hsu",
+      "Shengli Hu",
+      "Xin Hu",
+      "Joost Huizinga",
+      "Shantanu Jain",
+      "Shawn Jain",
+      "Joanne Jang",
+      "Angela Jiang",
+      "Roger Jiang",
+      "Haozhun Jin",
+      "Denny Jin",
+      "Shino Jomoto",
+      "Billie Jonn",
+      "Heewoo Jun",
+      "Tomer Kaftan",
+      "Łukasz Kaiser",
+      "Ali Kamali",
+      "Ingmar Kanitscheider",
+      "Nitish Shirish Keskar",
+      "Tabarak Khan",
+      "Logan Kilpatrick",
+      "Jong Wook Kim",
+      "Christina Kim",
+      "Yongjik Kim",
+      "Jan Hendrik Kirchner",
+      "Jamie Kiros",
+      "Matt Knight",
+      "Daniel Kokotajlo",
+      "Łukasz Kondraciuk",
+      "Andrew Kondrich",
+      "Aris Konstantinidis",
+      "Kyle Kosic",
+      "Gretchen Krueger",
+      "Vishal Kuo",
+      "Michael Lampe",
+      "Ikai Lan",
+      "Teddy Lee",
+      "Jan Leike",
+      "Jade Leung",
+      "Daniel Levy",
+      "Chak Ming Li",
+      "Rachel Lim",
+      "Molly Lin",
+      "Stephanie Lin",
+      "Mateusz Litwin",
+      "Theresa Lopez",
+      "Ryan Lowe",
+      "Patricia Lue",
+      "Anna Makanju",
+      "Kim Malfacini",
+      "Sam Manning",
+      "Todor Markov",
+      "Yaniv Markovski",
+      "Bianca Martin",
+      "Katie Mayer",
+      "Andrew Mayne",
+      "Bob McGrew",
+      "Scott Mayer McKinney",
+      "Christine McLeavey",
+      "Paul McMillan",
+      "Jake McNeil",
+      "David Medina",
+      "Aalok Mehta",
+      "Jacob Menick",
+      "Luke Metz",
+      "Andrey Mishchenko",
+      "Pamela Mishkin",
+      "Vinnie Monaco",
+      "Evan Morikawa",
+      "Daniel Mossing",
+      "Tong Mu",
+      "Mira Murati",
+      "Oleg Murk",
+      "David Mély",
+      "Ashvin Nair",
+      "Reiichiro Nakano",
+      "Rajeev Nayak",
+      "Arvind Neelakantan",
+      "Richard Ngo",
+      "Hyeonwoo Noh",
+      "Long Ouyang",
+      "Cullen O'Keefe",
+      "Jakub Pachocki",
+      "Alex Paino",
+      "Joe Palermo",
+      "Ashley Pantuliano",
+      "Giambattista Parascandolo",
+      "Joel Parish",
+      "Emy Parparita",
+      "Alex Passos",
+      "Mikhail Pavlov",
+      "Andrew Peng",
+      "Adam Perelman",
+      "Filipe de Avila Belbute Peres",
+      "Michael Petrov",
+      "Henrique Ponde de Oliveira Pinto",
+      " Michael",
+      " Pokorny",
+      "Michelle Pokrass",
+      "Vitchyr H. Pong",
+      "Tolly Powell",
+      "Alethea Power",
+      "Boris Power",
+      "Elizabeth Proehl",
+      "Raul Puri",
+      "Alec Radford",
+      "Jack Rae",
+      "Aditya Ramesh",
+      "Cameron Raymond",
+      "Francis Real",
+      "Kendra Rimbach",
+      "Carl Ross",
+      "Bob Rotsted",
+      "Henri Roussez",
+      "Nick Ryder",
+      "Mario Saltarelli",
+      "Ted Sanders",
+      "Shibani Santurkar",
+      "Girish Sastry",
+      "Heather Schmidt",
+      "David Schnurr",
+      "John Schulman",
+      "Daniel Selsam",
+      "Kyla Sheppard",
+      "Toki Sherbakov",
+      "Jessica Shieh",
+      "Sarah Shoker",
+      "Pranav Shyam",
+      "Szymon Sidor",
+      "Eric Sigler",
+      "Maddie Simens",
+      "Jordan Sitkin",
+      "Katarina Slama",
+      "Ian Sohl",
+      "Benjamin Sokolowsky",
+      "Yang Song",
+      "Natalie Staudacher",
+      "Felipe Petroski Such",
+      "Natalie Summers",
+      "Ilya Sutskever",
+      "Jie Tang",
+      "Nikolas Tezak",
+      "Madeleine B. Thompson",
+      "Phil Tillet",
+      "Amin Tootoonchian",
+      "Elizabeth Tseng",
+      "Preston Tuggle",
+      "Nick Turley",
+      "Jerry Tworek",
+      "Juan Felipe Cerón Uribe",
+      "Andrea Vallone",
+      "Arun Vijayvergiya",
+      "Chelsea Voss",
+      "Carroll Wainwright",
+      "Justin Jay Wang",
+      "Alvin Wang",
+      "Ben Wang",
+      "Jonathan Ward",
+      "Jason Wei",
+      "CJ Weinmann",
+      "Akila Welihinda",
+      "Peter Welinder",
+      "Jiayi Weng",
+      "Lilian Weng",
+      "Matt Wiethoff",
+      "Dave Willner",
+      "Clemens Winter",
+      "Samuel Wolrich",
+      "Hannah Wong",
+      "Lauren Workman",
+      "Sherwin Wu",
+      "Jeff Wu",
+      "Michael Wu",
+      "Kai Xiao",
+      "Tao Xu",
+      "Sarah Yoo",
+      "Kevin Yu",
+      "Qiming Yuan",
+      "Wojciech Zaremba",
+      "Rowan Zellers",
+      "Chong Zhang",
+      "Marvin Zhang",
+      "Shengjia Zhao",
+      "Tianhao Zheng",
+      "Juntang Zhuang",
+      "William Zhuk",
+      "Barret Zoph"
+    ],
+    "year": "2023",
+    "status": "valid"
+  },
+  "34fbcda80f7df3bfd9cd826ad5aea7b1": {
+    "title": "The History of Robotics",
+    "url": "https://doi.org/10.1201/9781420039733.ch1",
+    "doi": "10.1201/9781420039733.ch1",
+    "score": 100.0,
+    "final_score": 70.0,
+    "source": "Crossref (Search)",
+    "authors": [
+      {
+        "given": "Wesley",
+        "family": "Stone",
+        "sequence": "first",
+        "affiliation": []
+      }
+    ],
+    "year": 2004,
+    "status": "uncertain",
+    "reason": "Similarity 100.0% (Penalized by Year Mismatch) (Threshold 80%)"
+  },
+  "7f32ed0c2cc68f5d023a4f034760f4b9": {
+    "status": "not_found",
+    "reason": "Best match only 23.5% similar (Penalized Score: 23.5)",
+    "best_guess": {
+      "title": "Harry Markowitz",
+      "url": "https://doi.org/10.1057/9780230362307.0024",
+      "doi": "10.1057/9780230362307.0024",
+      "score": 23.529411764705888,
+      "final_score": 23.529411764705888,
+      "source": "Crossref (Search)",
+      "authors": [],
+      "year": null
+    }
+  }
+}
