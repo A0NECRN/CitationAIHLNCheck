@@ -4,10 +4,12 @@ import time
 import glob
 import argparse
 from tqdm import tqdm
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from src.bib_parser import parse_bibtex_file
 from src.verifier import verify_citation
 
 DEFAULT_INPUT_FILE = "input.bib"
+MAX_WORKERS = 5
 
 def process_file(file_path):
     print(f"\n[*] Processing file: {file_path}")
@@ -35,11 +37,22 @@ def process_file(file_path):
     results = []
     valid_count = 0
     
-    for entry in tqdm(entries, desc="Progress", unit="item"):
-        verification = verify_citation(entry)
-        results.append((entry, verification))
-        if verification['status'] == 'valid':
-            valid_count += 1
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        future_to_entry = {executor.submit(verify_citation, entry): entry for entry in entries}
+        
+        for future in tqdm(as_completed(future_to_entry), total=len(entries), desc="Progress", unit="item"):
+            entry = future_to_entry[future]
+            try:
+                verification = future.result()
+                results.append((entry, verification))
+                if verification['status'] == 'valid':
+                    valid_count += 1
+            except Exception as exc:
+                print(f"[!] Error verifying entry {entry.get('ID', 'unknown')}: {exc}")
+    
+    # Sort results to maintain original order (optional, but good for reports)
+    # Since dicts preserve insertion order in recent Python, we might want to map back
+    # But for now, just appending is fine, or we can sort by ID if needed.
             
     report_file = f"{file_path}_report.md"
     with open(report_file, 'w', encoding='utf-8') as f:

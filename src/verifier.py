@@ -2,6 +2,9 @@ import requests
 import time
 import re
 import random
+import json
+import os
+import hashlib
 import xml.etree.ElementTree as ET
 from rapidfuzz import fuzz
 from urllib.parse import quote
@@ -14,11 +17,36 @@ HEADERS = {
     "User-Agent": "CitationAIHLNCheck/2.0 (mailto:citation_check_bot@example.com)"
 }
 
-THRESHOLD_VALID = 85
-THRESHOLD_UNCERTAIN = 60
+THRESHOLD_VALID = 90
+THRESHOLD_UNCERTAIN = 75
 
 MIN_DELAY = 0.8
 MAX_DELAY = 1.5
+
+CACHE_FILE = ".citation_cache.json"
+CACHE = {}
+
+def load_cache():
+    global CACHE
+    if os.path.exists(CACHE_FILE):
+        try:
+            with open(CACHE_FILE, 'r', encoding='utf-8') as f:
+                CACHE = json.load(f)
+        except:
+            CACHE = {}
+
+def save_cache():
+    try:
+        with open(CACHE_FILE, 'w', encoding='utf-8') as f:
+            json.dump(CACHE, f, ensure_ascii=False, indent=2)
+    except:
+        pass
+
+def get_cache_key(prefix, data):
+    raw = f"{prefix}:{str(data)}"
+    return hashlib.md5(raw.encode('utf-8')).hexdigest()
+
+load_cache()
 
 def api_delay():
     time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
@@ -73,6 +101,10 @@ def check_year_match(entry_year, result_year):
         return None
 
 def verify_by_crossref_doi(doi):
+    cache_key = get_cache_key("crossref_doi", doi)
+    if cache_key in CACHE:
+        return CACHE[cache_key]
+
     try:
         api_delay()
         url = f"{CROSSREF_API_URL}/{doi}"
@@ -87,7 +119,7 @@ def verify_by_crossref_doi(doi):
             elif 'issued' in data and 'date-parts' in data['issued']:
                  year = data['issued']['date-parts'][0][0]
 
-            return {
+            result = {
                 "status": "valid",
                 "source": "Crossref (DOI)",
                 "title": data.get('title', [''])[0],
@@ -95,6 +127,9 @@ def verify_by_crossref_doi(doi):
                 "year": year,
                 "score": 100
             }
+            CACHE[cache_key] = result
+            save_cache()
+            return result
         return None
     except requests.exceptions.Timeout:
         return None
@@ -102,6 +137,10 @@ def verify_by_crossref_doi(doi):
         return None
 
 def verify_by_crossref_search(title, author=None, year=None):
+    cache_key = get_cache_key("crossref_search", f"{title}_{author}_{year}")
+    if cache_key in CACHE:
+        return CACHE[cache_key]
+
     try:
         api_delay()
         query = title
@@ -165,6 +204,9 @@ def verify_by_crossref_search(title, author=None, year=None):
                         "year": found_year
                     }
 
+            if best_match:
+                CACHE[cache_key] = best_match
+                save_cache()
             return best_match
         return None
     except requests.exceptions.Timeout:
@@ -173,6 +215,10 @@ def verify_by_crossref_search(title, author=None, year=None):
         return None
 
 def verify_by_semantic_scholar(title, author=None, year=None):
+    cache_key = get_cache_key("semantic_scholar", f"{title}_{author}_{year}")
+    if cache_key in CACHE:
+        return CACHE[cache_key]
+
     params = {
         "query": title,
         "limit": 1,
@@ -215,7 +261,7 @@ def verify_by_semantic_scholar(title, author=None, year=None):
                 if final_score > 100: final_score = 100
                 if final_score < 0: final_score = 0
 
-                return {
+                result = {
                     "title": found_title,
                     "url": item.get('url', ''),
                     "doi": item.get('doi', ''),
@@ -225,6 +271,9 @@ def verify_by_semantic_scholar(title, author=None, year=None):
                     "authors": item.get('authors', []),
                     "year": found_year
                 }
+                CACHE[cache_key] = result
+                save_cache()
+                return result
             elif response.status_code == 429:
                  wait_time = base_wait * (2 ** attempt) + random.uniform(1, 3)
                  print(f" [!] Semantic Scholar rate limited, waiting {wait_time:.1f}s...")
@@ -240,6 +289,10 @@ def verify_by_semantic_scholar(title, author=None, year=None):
     return None
 
 def verify_by_arxiv(title, author=None, year=None):
+    cache_key = get_cache_key("arxiv", f"{title}_{author}_{year}")
+    if cache_key in CACHE:
+        return CACHE[cache_key]
+
     try:
         api_delay()
         clean_t = re.sub(r'[^\w\s]', ' ', title) 
@@ -325,7 +378,7 @@ def verify_by_arxiv(title, author=None, year=None):
                 
             link = entry.find('atom:id', ns).text
             
-            return {
+            result = {
                 "title": found_title,
                 "url": link,
                 "doi": "",
@@ -335,6 +388,9 @@ def verify_by_arxiv(title, author=None, year=None):
                 "authors": found_authors,
                 "year": found_year
             }
+            CACHE[cache_key] = result
+            save_cache()
+            return result
             
         return None
     except Exception as e:
@@ -356,17 +412,11 @@ def verify_citation(entry):
 
     res_crossref = verify_by_crossref_search(clean_t, author, year)
     
-    ACCEPTANCE_THRESHOLD = 80 
+    ACCEPTANCE_THRESHOLD = 85
     
     if res_crossref and res_crossref.get('final_score', 0) >= ACCEPTANCE_THRESHOLD:
         res_crossref['status'] = 'valid'
         return res_crossref
-
-    res_s2 = verify_by_semantic_scholar(clean_t, author, year)
-    
-    if res_s2 and res_s2.get('final_score', 0) >= ACCEPTANCE_THRESHOLD:
-        res_s2['status'] = 'valid'
-        return res_s2
 
     res_arxiv = verify_by_arxiv(clean_t, author, year)
     
@@ -374,7 +424,13 @@ def verify_citation(entry):
         res_arxiv['status'] = 'valid'
         return res_arxiv
 
-    candidates = [c for c in [res_crossref, res_s2, res_arxiv] if c]
+    res_s2 = verify_by_semantic_scholar(clean_t, author, year)
+    
+    if res_s2 and res_s2.get('final_score', 0) >= ACCEPTANCE_THRESHOLD:
+        res_s2['status'] = 'valid'
+        return res_s2
+
+    candidates = [c for c in [res_crossref, res_arxiv, res_s2] if c]
     
     if not candidates:
         return {
