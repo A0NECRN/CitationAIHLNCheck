@@ -3,6 +3,16 @@
 [![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
+> [!WARNING]
+> **Disclaimer / 免责声明**  
+> This tool is currently in **Alpha** stage. It is designed as a **preliminary screening aid** and cannot replace manual verification.
+> - Citations marked as `❌ NOT FOUND` may be real but not indexed by the APIs used (e.g., non-English journals, very new papers).
+> - Citations marked as `✅ PASSED` should still be manually verified via the provided DOI links.
+> 
+> **本工具目前处于 Alpha 测试阶段，仅作为初筛辅助，绝不能替代人工核实。**
+> - 被标记为 `❌ NOT FOUND` 的文献可能真实存在，只是未被我们的数据库接口收录（如中文期刊、最新论文）。
+> - 被标记为 `✅ PASSED` 的文献，请务必点击报告中的链接进行二次确认。
+
 [English](#english) | [中文](#中文)
 
 ---

@@ -261,6 +261,12 @@ def verify_by_semantic_scholar(title, author=None, year=None):
                 if final_score > 100: final_score = 100
                 if final_score < 0: final_score = 0
 
+                # Strict check for author and year
+                if author and not is_author_match:
+                    final_score = 0
+                if year and found_year and is_year_match == False:
+                    final_score = 0
+
                 result = {
                     "title": found_title,
                     "url": item.get('url', ''),
@@ -375,6 +381,12 @@ def verify_by_arxiv(title, author=None, year=None):
 
             if final_score > 100: final_score = 100
             if final_score < 0: final_score = 0
+            
+            # Strict check for author and year
+            if author and not is_author_match:
+                final_score = 0
+            if year and found_year and is_year_match == False:
+                final_score = 0
                 
             link = entry.find('atom:id', ns).text
             
@@ -408,6 +420,13 @@ def verify_citation(entry):
     if 'doi' in entry and entry['doi']:
         res = verify_by_crossref_doi(entry['doi'])
         if res:
+            # Check if year matches even for DOI lookup
+            if year and res.get('year'):
+                 is_year_match = check_year_match(year, res['year'])
+                 if is_year_match == False:
+                     res['status'] = 'uncertain'
+                     res['reason'] = f"DOI valid but Year mismatch (Bib: {year}, DB: {res['year']})"
+                     return res
             return res
 
     res_crossref = verify_by_crossref_search(clean_t, author, year)
