@@ -7,3 +7,9 @@ __pycache__/
 venv/
 .env
 .citation_cache.json
+
+# Test files and scripts
+huiyu.bib
+bibtests/
+generate_tests.py
+evaluate_results.py
