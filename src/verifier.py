@@ -68,19 +68,28 @@ def check_author_match(entry_author, result_authors):
     if not entry_author or not result_authors:
         return False
 
-    entry_author_clean = entry_author.split(',')[0].split(' and ')[0].strip()
+    # Extract first author's last name from entry
+    # Handles: "Smith, John", "John Smith", "Smith"
+    entry_author = entry_author.replace('{', '').replace('}', '')
+    first_author_part = entry_author.split(',')[0].split(' and ')[0].strip()
+    entry_last_name = first_author_part.split()[-1].lower() if ' ' in first_author_part else first_author_part.lower()
     
     for author in result_authors:
+        found_name = ""
         if isinstance(author, dict):
+            # Crossref format: {'family': 'Smith', 'given': 'John'}
             if 'family' in author:
-                 if fuzz.partial_ratio(entry_author_clean.lower(), author['family'].lower()) > 80:
-                     return True
-            if 'name' in author:
-                 if fuzz.partial_ratio(entry_author_clean.lower(), author['name'].lower()) > 80:
-                     return True
+                 found_name = author['family'].lower()
+            elif 'name' in author:
+                 found_name = author['name'].lower()
         elif isinstance(author, str):
-             if fuzz.partial_ratio(entry_author_clean.lower(), author.lower()) > 80:
-                 return True
+             # arXiv/S2 format: "John Smith"
+             found_name = author.split()[-1].lower() if ' ' in author else author.lower()
+        
+        if entry_last_name in found_name or found_name in entry_last_name:
+            return True
+        if fuzz.partial_ratio(entry_last_name, found_name) > 85:
+            return True
                  
     return False
 
@@ -190,6 +199,12 @@ def verify_by_crossref_search(title, author=None, year=None):
                 
                 if final_score > 100: final_score = 100
                 if final_score < 0: final_score = 0
+                
+                # Strict check for author and year (Add this)
+                if author and not is_author_match:
+                    final_score = 0
+                if year and found_year and is_year_match == False:
+                    final_score = 0
                 
                 if final_score > best_score:
                     best_score = final_score
